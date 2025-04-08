@@ -16,6 +16,7 @@
     <div class="logo">Tech_<span>Learning</span></div>
     
     <div class="menu-toggle" id="menu-toggle">&#9776;</div> 
+      <div id="close-btn">&#10060;</div>
     
     <nav id="navbar">
       <a href="./about.html">About</a>
@@ -31,13 +32,16 @@
   <div class="main-content">
  
     <div class="main-left">
+       <div>
+        <p>We've already enrolled <span class="number" data-number="50000"></span>+ students</p>
+      </div>
       <div class="tag">Specialization over generalization</div>
       <h1>Learning IT & AI Course</h1>
       <p>
         Equip yourself with IT  & data science skills through live, <br> interactive lectures guided by industry expert mentors.
       </p>
       <p><span class="highlight">Live</span> <span>Interactive Classes</span></p>
-      <button onclick="location.href='form.html'" class="btn-main">⬇️ Apply Now </button>
+      <button onclick="location.href='form.html'" class="btn-main"> Apply Now </button>
     </div>
     
     <div class="main-right">
@@ -82,7 +86,7 @@
 <section>
   <div class="container2">
     <h1 class="headline">Unlock Your Path to a Brighter Tomorrow</h1>
-    <button class="enroll-btn">Enroll Now</button>
+    <button class="enroll-btn" onclick="location.href='signin.html'">Enroll Now</button>
 </div>
 </section>
 <br><br><br>
@@ -120,13 +124,34 @@
 </footer>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.getElementById("menu-toggle");
-  const nav = document.getElementById("navbar");
-
-  toggleBtn.addEventListener("click", () => {
-    nav.classList.toggle("show");
+    const toggleBtn = document.getElementById("menu-toggle");
+    const nav = document.getElementById("navbar");
+    const closeBtn = document.getElementById("close-btn");
+  
+    toggleBtn.addEventListener("click", () => {
+      nav.classList.toggle("show");
+    });
+  
+    closeBtn.addEventListener("click" , ()=>{
+      nav.classList.remove("show");
+    })
   });
-});
+
+  function animate(selector, duration = 4000) {
+  const el = document.querySelector(selector),
+        target = +el.dataset.number,
+        increment = target / 60,
+        interval = duration / 60;
+  let count = 0;
+
+  const timer = setInterval(() => {
+    el.textContent = (count += increment) < target
+      ? Math.floor(count).toLocaleString()
+      : (clearInterval(timer), target.toLocaleString());
+  }, interval);
+}
+  animate(".number");
+
 </script>
 
 </script>
